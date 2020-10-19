@@ -1,0 +1,7 @@
+.git/*
+.idea/*
+out/*
+src/.idea/*
+# Package Files #
+*.jar
+*.iml
