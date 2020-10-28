@@ -21,11 +21,6 @@
 	2.3. В классе Function будут храниться функции: аутентификации, авторизации, аккаунтинг, вывод справки, информцию о ресурсе   
 	
 	2.4 Наример
-	
-		Есть Объект Ресурс 1 с полем- "A.AB.ABC"	
-		Есть Объект Ресурс 1 с полем- "B, C.CB"
-		Есть Объект Ресурс 1 с полем- "A"		
-		Есть Объект Ресурс 1 с полем- "A.AB.ABC, C"
 		
 		2.4.1  пользователь "admin1"  ресурс "Ресурс 1" роль "READ"
 		2.4.2  пользователь "admin1"  ресурс "Ресурс 2" роль "EXECUTE"
@@ -88,23 +83,23 @@
 	
 	10.2 Проверка на авторизацию
 
-		10.2.1 Ввод данных: -login "admin" -password "admin" -res "A.AB.ABC" -role "READ". Результат: Успешная авторизация (exit код 0)
+		10.2.1 Ввод данных: -login "admin" -password "admin1" -res "A.AB.ABC" -role "READ". Результат: Успешная авторизация (exit код 0)
 
-		10.2.2 Ввод данных: -login "admin" -password "admin" -res "A.AB.ABC" -role "RE". Результат: Роль не найдена или не существует (exit код 5)
+		10.2.2 Ввод данных: -login "admin" -password "admin1" -res "A.AB.ABC" -role "RE". Результат: Роль не найдена или не существует (exit код 5)
 
-		10.2.3 Ввод данных: -login "admin" -password "admin" -res "A.AB.ABC" -role "". Результат: Передача пустого аргумента в -role (exitCode 5)
+		10.2.3 Ввод данных: -login "admin" -password "admin1" -res "A.AB.ABC" -role "". Результат: Передача пустого аргумента в -role (exitCode 5)
 
-		10.2.4 Ввод данных: -login "user" -password "user" -res "A.AB.ABC" -role "WRITE". Результат: Работа с ресурсом не доступна для этого пользователя (exitCode 6)
+		10.2.4 Ввод данных: -login "admin" -password "admin1" -res "A.AB.ABC" -role "WRITE". Результат: Работа с ресурсом не доступна для этого пользователя (exitCode 6)
 		
-		10.2.5 Ввод данных: -login "user" -password "user" -res "A.AB.ABD" -role "WRITE". Результат: Работа с ресурсом не доступна для этого пользователя (exitCode 6)
+		10.2.5 Ввод данных: -login "admin" -password "admin1" -res "A.AB.ABD" -role "WRITE". Результат: Работа с ресурсом не доступна для этого пользователя (exitCode 6)
 
 	10.3 Проверка на Аккаунтинг
 
-		10.3.1 Ввод данных: -login "user2" -password "user2" -res "A.AB.ABC" -role "READ" -ds "01-01-2020" -de "01-06-2020" -vol "10,1". Результат: Ошибка. В объеме есть дробное число или текст (exitCode 7)
+		10.3.1 Ввод данных: -login "admin2" -password "admin2" -res "A.AB.ABC" -role "READ" -ds "01-01-2020" -de "01-06-2020" -vol "10,1". Результат: Ошибка. В объеме есть дробное число или текст (exitCode 7)
 
-		10.3.2 Ввод данных: -login "user2" -password "user2" -res "A.AB.ABC" -role "READ" -ds "01.01.2020" -de "01.06.2020" -vol "10". Результат: Несоблюдением формата даты (exitCode 7)
+		10.3.2 Ввод данных: -login "admin2" -password "admin2" -res "A.AB.ABC" -role "READ" -ds "01.01.2020" -de "01.06.2020" -vol "10". Результат: Несоблюдением формата даты (exitCode 7)
 
-		10.3.2 Ввод данных: -login "user2" -password "user2" -res "A.AB.ABC" -role "READ" -ds "01-01-2020" -de "01-06-2020" -vol "10". Результат: Успешная авторизация (exit код 0)
+		1..3.2 Ввод данных: -login "admin2" -password "admin2" -res "A.AB.ABC" -role "READ" -ds "01-01-2020" -de "01-06-2020" -vol "10". Результат: Успешная авторизация (exit код 0)
 
 	10.4 Вывод справки (exitCode 1)
 
