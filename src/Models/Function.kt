@@ -1,4 +1,4 @@
 package Models
 
-class Function {
+class Fun {
 }
