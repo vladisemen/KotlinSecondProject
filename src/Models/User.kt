@@ -1,4 +1,4 @@
-package Models
+package models
 
-class User {
+class User (val login: String, val password: Int){
 }
