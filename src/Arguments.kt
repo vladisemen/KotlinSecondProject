@@ -9,4 +9,5 @@ data class Arguments(var h: Boolean,
     fun isEmpty(): Boolean {
         return login == null && pass == null && role == null && res == null && ds == null && de == null && vol == null
     }
+    fun hasHelp(): Boolean = h
 }
