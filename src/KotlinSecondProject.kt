@@ -4,6 +4,16 @@ if (!checkAmountParams(args)){
     System.exit(1)
 }
     val arguments = parseValues(args)
+    when {
+        arguments.isEmpty() -> {
+            printHelp()
+            System.exit(1)
+        }
+        arguments.hasHelp() -> {
+            printHelp()
+            System.exit(1)
+        }
+    }
 }
 
 fun checkAmountParams(args: Array<String>): Boolean {
