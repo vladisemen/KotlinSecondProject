@@ -1,9 +1,13 @@
 fun main(args: Array<String>) {
-
+if (!checkAmountParams(args)){
+    println("неверное число параметров")
+    System.exit(1)
+}
+    val arguments = parseValues(args)
 }
 
 fun checkAmountParams(args: Array<String>): Boolean {
-    return (args.size == 0 || args.size == 1 || args.size == 4 || args.size == 8 || args.size == 14)
+    return (args.isEmpty() || args.size == 1 || args.size == 4 || args.size == 8 || args.size == 14)
 }
 
 fun parseValues(args: Array<String>): Arguments {
