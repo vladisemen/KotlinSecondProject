@@ -26,5 +26,8 @@ fun parseValues(args: Array<String>): Arguments {
         }
     }
 }
+fun printHelp(){
+    println("Это справка")
+}
 
 
