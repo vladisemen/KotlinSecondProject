@@ -1,23 +1,25 @@
-data class Arguments(var h: Boolean,
-                     val login: String?,
-                     val pass: String?,
-                     val role: String?,
-                     /**
-                      * ресурс
-                      */
-                     val res: String?,
-                     /**
-                      *дата начальная
-                      */
-                     val ds: String?,
-                     /**
-                      *дата конечная
-                      */
-                     val de: String?,
-                     /**
-                      *число
-                      */
-                     val vol: String?) {
+data class Arguments(
+        var h: Boolean,
+        val login: String?,
+        val pass: String?,
+        val role: String?,
+        /**
+         * ресурс
+         */
+        val res: String?,
+        /**
+         *дата начальная
+         */
+        val ds: String?,
+        /**
+         *дата конечная
+         */
+        val de: String?,
+        /**
+         *число
+         */
+        val vol: String?,
+) {
     /**
      * Пустой?
      */

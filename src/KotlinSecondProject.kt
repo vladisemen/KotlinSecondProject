@@ -21,6 +21,13 @@ fun main(args: Array<String>) {
 }
 
 /**
+ * проверяет формат логина
+ */
+fun isLoginValid(login: String?): Boolean {
+    return true
+}
+
+/**
  * Вернет код возврата по логину и паролю(0,2,3 или 4)
  */
 fun authenticate(login: String?, pass: String?): Int {
