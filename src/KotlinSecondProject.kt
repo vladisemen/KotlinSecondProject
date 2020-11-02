@@ -1,8 +1,8 @@
 fun main(args: Array<String>) {
-if (!checkAmountParams(args)){
-    println("неверное число параметров")
-    System.exit(1)
-}
+    if (!checkAmountParams(args)) {
+        println("неверное число параметров")
+        System.exit(1)
+    }
     val arguments = parseValues(args)
     when {
         arguments.isEmpty() -> {
@@ -36,7 +36,8 @@ fun parseValues(args: Array<String>): Arguments {
         }
     }
 }
-fun printHelp(){
+
+fun printHelp() {
     println("Это справка")
 }
 
