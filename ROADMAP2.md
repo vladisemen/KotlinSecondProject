@@ -118,42 +118,42 @@ when {
 
 ? Метод с регулярками
 
-4. Написать код для аутентификации
-4.1 В Arguments добавляем метода hasAuthentification(): Boolean
-4.2 Добавляем проверку в when
+5. Написать код для аутентификации
+5.1 В Arguments добавляем метода hasAuthentification(): Boolean
+5.2 Добавляем проверку в when
 arguments.hasAuthentification() -> {
     // TODO
 }
-4.3 создаем метод внутри main authenticate(login: String, pass: String): Long который будет проводить аутентификацию 
+5.3 создаем метод внутри main authenticate(login: String, pass: String): Long который будет проводить аутентификацию 
 и возвращать код возврата
-4.4 внутрь hasAuthentification добавить вызов authenticate
+5.4 внутрь hasAuthentification добавить вызов authenticate
 arguments.hasAuthentification() -> {
     val code = authenticate(arguments.login, arguments.pass) // code 0, 2, 3 или 4
     System.exit(code) // Когда начнем переписывать нам придется переделать этот момент
 }
-4.5 создать метод внутри main isLoginValid(): Boolean который будет проверять на формат логина
-4.6 внутри authenticate вызываем isLoginValid и если результат false то возвращаем 2 иначе проверяем дальше
+5.5 создать метод внутри main isLoginValid(): Boolean который будет проверять на формат логина
+5.6 внутри authenticate вызываем isLoginValid и если результат false то возвращаем 2 иначе проверяем дальше
 
-4.7 Создаём "базу данных" пользователей
+5.7 Создаём "базу данных" пользователей
 
-4.7.1 Создаём класс UserDB (потом мы его переименуем в UserService)
-4.7.2 В классе UserDB создаём метод hasLogin(login: String): Boolean который проверяет наличие логина // Метод пустой на текущий момент
-4.7.3 В методе main создать экземпляр класса UserDB и передать его внутрь метода authenticate
-4.7.4 внутри authenticate вызываем userDB.hasLogin если вернул false возвращаем 3 иначе обрабатываем дальше
-4.7.5 В классе UserDB создаём метод findPasswordByLogin(login: String): String // Метод пустой на текущий момент
-4.7.6 внутри authenticate проверяем совпадает ли пароль с найденным в базе validatePassword(passArg: String, passDB: String): Boolean
+5.7.1 Создаём класс UserDB (потом мы его переименуем в UserService)
+5.7.2 В классе UserDB создаём метод hasLogin(login: String): Boolean который проверяет наличие логина // Метод пустой на текущий момент
+5.7.3 В методе main создать экземпляр класса UserDB и передать его внутрь метода authenticate
+5.7.4 внутри authenticate вызываем userDB.hasLogin если вернул false возвращаем 3 иначе обрабатываем дальше
+5.7.5 В классе UserDB создаём метод findPasswordByLogin(login: String): String // Метод пустой на текущий момент
+5.7.6 внутри authenticate проверяем совпадает ли пароль с найденным в базе validatePassword(passArg: String, passDB: String): Boolean
 если false то вернём 4 иначе вернём 0
 
 // Абстракция и Инкапсуляция позволяет мысленно сосредотачиваться на чем-то одном
-4.8 Методы внутри базы данных
-4.8.1 Мы должны создать класс User
+5.8 Методы внутри базы данных
+5.8.1 Мы должны создать класс User
 data class User(
     val id: Long,
     val login: String,
     val pass: String
 )
-4.8.2 Создаем коллекцию users внутри класса UserDB (иммутабельный список) юзеров и заполняем его двумя тестовыми записями
-4.8.3 Заменяем заглушку внутри метода hasLogin на реальный код:
+5.8.2 Создаем коллекцию users внутри класса UserDB (иммутабельный список) юзеров и заполняем его двумя тестовыми записями
+5.8.3 Заменяем заглушку внутри метода hasLogin на реальный код:
 перебирам элементы users и сравниваем логин (ФВП any)
-4.8.4 Заменяем заглушку внутри метода findPasswordByLogin на реальный код:
+5.8.4 Заменяем заглушку внутри метода findPasswordByLogin на реальный код:
 перебираем элементы users и ищем пользователя по логину и возвращаем пароль из найденного пользователя
