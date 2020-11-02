@@ -19,6 +19,10 @@ fun main(args: Array<String>) {
     }
 }
 
+fun authenticate(login: String, pass: String): Long{
+    return 0
+}
+
 fun checkAmountParams(args: Array<String>): Boolean {
     return (args.isEmpty() || args.size == 1 || args.size == 4 || args.size == 8 || args.size == 14)
 }
