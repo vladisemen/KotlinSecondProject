@@ -13,6 +13,9 @@ fun main(args: Array<String>) {
             printHelp()
             System.exit(1)
         }
+        arguments.hasAuthentification() -> {
+            // TODO
+        }
     }
 }
 
