@@ -14,12 +14,16 @@ fun main(args: Array<String>) {
             System.exit(1)
         }
         arguments.hasAuthentification() -> {
-            // TODO
+            val code = authenticate(arguments.login, arguments.pass) // code 0, 2, 3 или 4
+            System.exit(code) // Когда начнем переписывать нам придется переделать этот момент
         }
     }
 }
 
-fun authenticate(login: String, pass: String): Long{
+/**
+ * Вернет код возврата по логину и паролю(0,2,3 или 4)
+ */
+fun authenticate(login: String?, pass: String?): Int {
     return 0
 }
 
