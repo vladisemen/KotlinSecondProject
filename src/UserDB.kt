@@ -15,14 +15,16 @@ class UserDB {
      * Есть ли такой логин в БД?
      */
     fun hasLogin(login: String): Boolean {
-        return true
+        val user = users.find {it.login==login}
+        return user != null
     }
 
     /**
      * найдет и вернет пароль в "БД"
      */
     fun findPasswordByLogin(login: String): String {
-        return login
+        val user = users.find {it.login==login}
+        return user!!.pass
     }
 }
 
