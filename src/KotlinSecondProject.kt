@@ -4,6 +4,7 @@ fun main(args: Array<String>) {
         System.exit(1)
     }
     val arguments = parseValues(args)
+
     when {
         arguments.isEmpty() -> {
             printHelp()
@@ -14,7 +15,8 @@ fun main(args: Array<String>) {
             System.exit(1)
         }
         arguments.hasAuthentification() -> {
-            val code = authenticate(arguments.login, arguments.pass) // code 0, 2, 3 или 4
+            val userDB = UserDB()
+            val code = authenticate(arguments.login, arguments.pass, userDB) // code 0, 2, 3 или 4
             System.exit(code) // Когда начнем переписывать нам придется переделать этот момент
         }
     }
@@ -30,13 +32,25 @@ fun isLoginValid(login: String): Boolean {
 /**
  * Вернет код возврата по логину и паролю(0,2,3 или 4)
  */
-fun authenticate(login: String?, pass: String?): Int {
+fun authenticate(login: String?, pass: String?, userDB: UserDB): Int {
     if (!isLoginValid(login!!)) {
         return 2
     } else {
-        return 0 //TODO
+        if (!userDB.hasLogin(login)) {
+            return 3
+        } else {
+            if (!validatePassword(pass!!,userDB.findPasswordByLogin(login))) {
+                return 4
+            } else {
+                return 0
+            }
+        }
     }
 
+}
+
+fun validatePassword(passArg: String, passDB: String): Boolean {
+    return passArg == passDB
 }
 
 fun checkAmountParams(args: Array<String>): Boolean {
