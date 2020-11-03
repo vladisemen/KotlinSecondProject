@@ -21,10 +21,10 @@ fun main(args: Array<String>) {
 }
 
 /**
- * проверяет формат логина
+ * проверяет формат логина вернет true если все ок
  */
-fun isLoginValid(login: String?): Boolean {
-    return true
+fun isLoginValid(login: String): Boolean {
+    return login.matches(".+[a-zA-Z0-9]$".toRegex())
 }
 
 /**
