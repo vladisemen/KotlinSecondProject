@@ -31,7 +31,12 @@ fun isLoginValid(login: String): Boolean {
  * Вернет код возврата по логину и паролю(0,2,3 или 4)
  */
 fun authenticate(login: String?, pass: String?): Int {
-    return 0
+    if (!isLoginValid(login!!)) {
+        return 2
+    } else {
+        return 0 //TODO
+    }
+
 }
 
 fun checkAmountParams(args: Array<String>): Boolean {
