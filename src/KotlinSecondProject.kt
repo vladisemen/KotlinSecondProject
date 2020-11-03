@@ -39,7 +39,7 @@ fun authenticate(login: String?, pass: String?, userDB: UserDB): Int {
         if (!userDB.hasLogin(login)) {
             return 3
         } else {
-            if (!validatePassword(pass!!,userDB.findPasswordByLogin(login))) {
+            if (!validatePassword(pass!!, userDB.findPasswordByLogin(login))) {
                 return 4
             } else {
                 return 0

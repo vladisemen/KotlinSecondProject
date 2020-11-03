@@ -1,4 +1,8 @@
 package models
 
-class User (val login: String, val password: Int){
+data class User(
+        val id: Int,
+        val login: String,
+        val pass: String,
+) {
 }
