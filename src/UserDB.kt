@@ -1,7 +1,7 @@
 import models.User
 
 class UserDB {
-    val users: List<User> = listOf(User(
+    private val users: List<User> = listOf(User(
             1,
             "admin",
             "0000"
@@ -15,7 +15,7 @@ class UserDB {
      * Есть ли такой логин в БД?
      */
     fun hasLogin(login: String): Boolean {
-        val user = users.find {it.login==login}
+        val user = users.find { it.login == login }
         return user != null
     }
 
@@ -23,7 +23,7 @@ class UserDB {
      * найдет и вернет пароль в "БД"
      */
     fun findPasswordByLogin(login: String): String {
-        val user = users.find {it.login==login}
+        val user = users.find { it.login == login }
         return user!!.pass
     }
 }
