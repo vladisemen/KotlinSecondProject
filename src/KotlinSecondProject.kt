@@ -17,7 +17,9 @@ fun main(args: Array<String>) {
         arguments.hasAuthentification() -> {
             val userDB = UserDB()
             val code = authenticate(arguments.login, arguments.pass, userDB) // code 0, 2, 3 или 4
+            print(code)
             System.exit(code) // Когда начнем переписывать нам придется переделать этот момент
+
         }
     }
 }
@@ -26,14 +28,15 @@ fun main(args: Array<String>) {
  * проверяет формат логина вернет true если все ок
  */
 fun isLoginValid(login: String): Boolean {
-    return login.matches(".+[a-zA-Z0-9]$".toRegex())
+    val mathResult = Regex("[^a-zA-Z0-9]").find(login)
+    return mathResult != null
 }
 
 /**
  * Вернет код возврата по логину и паролю(0,2,3 или 4)
  */
 fun authenticate(login: String?, pass: String?, userDB: UserDB): Int {
-    if (!isLoginValid(login!!)) {
+    if (isLoginValid(login!!)) {
         return 2
     } else {
         if (!userDB.hasLogin(login)) {
