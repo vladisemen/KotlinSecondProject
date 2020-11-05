@@ -4,11 +4,13 @@ class UserDB {
     private val users: List<User> = listOf(User(
             1,
             "admin",
-            "0000"
+            "a6de4326f6ec9d8ae3cb7b8e42015027",
+            "SALT"
     ), User(
             2,
             "user",
-            "zzz"
+            "fced8b3406938ea846f6eaf0c93dec1a",
+            "SALT"
     ))
 
     /**
