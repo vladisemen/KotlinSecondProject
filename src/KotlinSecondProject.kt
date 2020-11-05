@@ -1,3 +1,6 @@
+import java.math.BigInteger
+import java.security.MessageDigest
+
 fun main(args: Array<String>) {
     if (!checkAmountParams(args)) {
         println("неверное число параметров")
@@ -22,6 +25,14 @@ fun main(args: Array<String>) {
 
         }
     }
+}
+
+/**
+ * Вернет хэш строки (MD5)
+ */
+fun getHash(password: String): String{
+    val md = MessageDigest.getInstance("MD5")
+    return BigInteger(1, md.digest(password.toByteArray())).toString(16).padStart(32, '0')
 }
 
 /**
