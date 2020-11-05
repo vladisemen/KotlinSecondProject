@@ -28,6 +28,10 @@ class UserDB {
         val user = users.find { it.login == login }
         return user!!.pass
     }
+    fun findSaltByLogin(login: String): String {
+        val user = users.find { it.login == login }
+        return user!!.salt!!
+    }
 }
 
 

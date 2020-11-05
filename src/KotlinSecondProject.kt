@@ -53,7 +53,7 @@ fun authenticate(login: String?, pass: String?, userDB: UserDB): Int {
         if (!userDB.hasLogin(login)) {
             return 3
         } else {
-            if (!validatePassword(pass!!, userDB.findPasswordByLogin(login))) {
+            if (!isValidatePassword(pass!!, userDB.findPasswordByLogin(login), userDB.findSaltByLogin(login))) {
                 return 4
             } else {
                 return 0
@@ -63,7 +63,7 @@ fun authenticate(login: String?, pass: String?, userDB: UserDB): Int {
 
 }
 
-fun validatePassword(passArg: String, passDB: String): Boolean {
+fun isValidatePassword(passArg: String, passDB: String, salt: String): Boolean {
     return passArg == passDB
 }
 
