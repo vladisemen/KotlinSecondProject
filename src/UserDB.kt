@@ -17,20 +17,28 @@ class UserDB {
      * Есть ли такой логин в БД?
      */
     fun hasLogin(login: String): Boolean {
-        val user = users.find { it.login == login }
-        return user != null
+        return findUserByLogin(login) != null
     }
 
     /**
      * найдет и вернет пароль в "БД"
      */
     fun findPasswordByLogin(login: String): String {
-        val user = users.find { it.login == login }
-        return user!!.pass
+        return findUserByLogin(login)!!.pass
     }
+
+    /**
+     * найдет и вернет сол по логину
+     */
     fun findSaltByLogin(login: String): String {
-        val user = users.find { it.login == login }
-        return user!!.salt!!
+        return findUserByLogin(login)!!.salt!!
+    }
+
+    /**
+     * Найдет и вернет юзера по логину
+     */
+    private fun findUserByLogin(login: String): User? {
+        return users.find { it.login == login }
     }
 }
 
