@@ -27,13 +27,6 @@ fun main(args: Array<String>) {
     }
 }
 
-/**
- * Вернет хэш строки (MD5)
- */
-fun getHash(password: String): String{
-    val md = MessageDigest.getInstance("MD5")
-    return BigInteger(1, md.digest(password.toByteArray())).toString(16).padStart(32, '0')
-}
 
 /**
  * проверяет формат логина вернет true если все ок
@@ -64,9 +57,23 @@ fun authenticate(login: String?, pass: String?, userDB: UserDB): Int {
 }
 
 fun isValidatePassword(passArg: String, passDB: String, salt: String): Boolean {
-    return passArg == passDB
+    return getPassHashAndSolt(passArg, salt) == passDB
 }
 
+/**
+ * Вернет хэшированный пароль (с добавлением соли)
+ */
+fun getPassHashAndSolt (pass: String, salt: String) : String{
+return getHash(getHash(pass) + salt)
+}
+
+/**
+ * Вернет хэш строки (MD5)
+ */
+fun getHash(password: String): String{
+    val md = MessageDigest.getInstance("MD5")
+    return BigInteger(1, md.digest(password.toByteArray())).toString(16).padStart(32, '0')
+}
 fun checkAmountParams(args: Array<String>): Boolean {
     return (args.isEmpty() || args.size == 1 || args.size == 4 || args.size == 8 || args.size == 14)
 }
