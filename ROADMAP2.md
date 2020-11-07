@@ -171,5 +171,23 @@ data class User(
     6.5 Переписать validatePassword(passArg: String, passDB: String, salt: String): Boolean  
     6.6 Добавить метод getPassHashAndSolt (pass: String, salt: String) : String который будет возвращать пароль по соли и хэш
 7 Авторизация
+
+    7.1 Создать enum class Roles() {
+                                        READ,
+                                        WRITE,
+                                        EXECUTE
+                                    }
+                                    
+    7.2 Создать дата класс data class RoleResource(
+                                val role: Roles,
+                                val resource: String,
+                                val idUser: Long)
+                                
+    7.3  Создаем коллекцию rolesResources внутри класса UserDB (иммутабельный список) и заполняем его тестовыми записями (п 2.2.3)
+    
+    7.4  Создаем метод внутри main authorization(roleString: String, res: String, idUser: Long): Long который будет проводить авторизацию и возвращать код возврата
+    
+    7.5 Создаем метода в классе RoleResource который проверяет имеет ли пользователь доступ checkResourceAccess(resource: String, role: Roles): Boolean (здесь ФВП)
+    
 8 Аккаунтинг
 
