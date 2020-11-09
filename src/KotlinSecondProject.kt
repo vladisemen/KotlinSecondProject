@@ -29,8 +29,7 @@ fun main(args: Array<String>) {
 }
 
 fun authorization(roleString: String, res: String, idUser: Int, userDB: UserDB): Long {
-    val roleEnum: Roles? = roleStringToEnum(roleString)
-    if (roleEnum == null) return 5
+    val roleEnum: Roles = roleStringToEnum(roleString) ?: return 5
     if (userDB.checkResourceAccess(res, roleEnum, idUser)) {
         return 0
     } else {
@@ -42,7 +41,20 @@ fun authorization(roleString: String, res: String, idUser: Int, userDB: UserDB):
  * Вернет роль типа Enum если соотв, иначе вернет null
  */
 fun roleStringToEnum(roleString: String): Roles? {
-    return null
+    return when (roleString) {
+        "READ" -> {
+            Roles.READ
+        }
+        "WRITE" -> {
+            Roles.WRITE
+        }
+        "EXECUTE" -> {
+            Roles.EXECUTE
+        }
+        else -> {
+            null
+        }
+    }
 }
 
 /**
