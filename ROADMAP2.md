@@ -188,6 +188,18 @@ data class User(
     7.4  Создаем метод внутри main authorization(roleString: String, res: String, idUser: Long): Long который будет проводить авторизацию и возвращать код возврата
     
     7.5 Создаем метода в классе RoleResource который проверяет имеет ли пользователь доступ checkResourceAccess(resource: String, role: Roles): Boolean (здесь ФВП)
+
+    7.6 Написать функцию проверки checkResourceAccess, используя ФВП
+    
+    7.7 Раскидать по методам то что можно из checkResourceAccess
+    
+    7.8  Добавить вызовы функций авторизации
+
+    7.9  Поправить when в main, чтобы после аутентификации еще и авторизировал
     
 8 Аккаунтинг
+
+    8.1 
+    
+9 Подключение либы для парсинга строки
 
