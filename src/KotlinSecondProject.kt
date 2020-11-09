@@ -1,3 +1,4 @@
+import models.Roles
 import java.math.BigInteger
 import java.security.MessageDigest
 
@@ -26,8 +27,22 @@ fun main(args: Array<String>) {
         }
     }
 }
-fun authorization(roleString: String, res: String, idUser: Long): Long{
-    return 0
+
+fun authorization(roleString: String, res: String, idUser: Int, userDB: UserDB): Long {
+    val roleEnum: Roles? = roleStringToEnum(roleString)
+    if (roleEnum == null) return 5
+    if (userDB.checkResourceAccess(res, roleEnum, idUser)) {
+        return 0
+    } else {
+        return 6
+    }
+}
+
+/**
+ * Вернет роль типа Enum если соотв, иначе вернет null
+ */
+fun roleStringToEnum(roleString: String): Roles? {
+    return null
 }
 
 /**
