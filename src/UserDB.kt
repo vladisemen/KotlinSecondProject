@@ -1,6 +1,73 @@
+import models.Roles
 import models.User
 
 class UserDB {
+    private val rolesResources: List<RoleResource> = listOf(
+            //region admin
+            RoleResource(
+                    Roles.READ,
+                    "A",
+                    1
+            ),
+            RoleResource(
+                    Roles.READ,
+                    "B",
+                    1
+            ),
+            RoleResource(
+                    Roles.READ,
+                    "C",
+                    1
+            ),
+            RoleResource(
+                    Roles.WRITE,
+                    "A",
+                    1
+            ),
+            RoleResource(
+                    Roles.WRITE,
+                    "B",
+                    1
+            ),
+            RoleResource(
+                    Roles.WRITE,
+                    "C",
+                    1
+            ),
+            RoleResource(
+                    Roles.EXECUTE,
+                    "A",
+                    1
+            ),
+            RoleResource(
+                    Roles.EXECUTE,
+                    "B",
+                    1
+            ),
+            RoleResource(
+                    Roles.EXECUTE,
+                    "C",
+                    1
+            ),
+            //endregion
+            //region user
+            RoleResource(
+                    Roles.READ,
+                    "A",
+                    2
+            ),
+            RoleResource(
+                    Roles.EXECUTE,
+                    "A.B",
+                    2
+            ),
+            RoleResource(
+                    Roles.WRITE,
+                    "XY.UV.ABCDEFGHIJ",
+                    2
+            ),
+            //endregion
+    )
     private val users: List<User> = listOf(User(
             1,
             "admin",
