@@ -81,6 +81,13 @@ class UserDB {
     ))
 
     /**
+     * Имеет ли доступ к ресурсу
+     */
+    fun checkResourceAccess(resource: String, role: Roles, idUser: Int): Boolean{
+        return true
+    }
+
+    /**
      * Есть ли такой логин в БД?
      */
     fun hasLogin(login: String): Boolean {
