@@ -26,7 +26,9 @@ fun main(args: Array<String>) {
         }
     }
 }
-
+fun authorization(roleString: String, res: String, idUser: Long): Long{
+    return 0
+}
 
 /**
  * проверяет формат логина вернет true если все ок
