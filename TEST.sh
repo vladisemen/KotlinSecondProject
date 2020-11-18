@@ -21,7 +21,7 @@ CaseTest[16]="-login user -pass zzz -role READ -res A.B -ds 2020-01-1 -de 2020-0
 CaseTest[17]="-login user -pass zzz -role READ -res A.B -ds 2020-01-11 -de 2020-10-12 -vol hgh"
 CaseTest[18]="-login user -pass zzz -role WRITE -res A -ds 2020-01-12 -de 2020-01-13 -vol 10"
 
-expectedExitCodes=(1 1 0 0 2 3 4 0 5 6 0 0 4 6 0 7 7 7 6)
+expectedExitCodes=(1 1 0 0 2 3 0 0 5 3 0 0 5 6 0 7 7 7 6)
 
 for ((i = 0; i < "$QuantityTest"; i++)); do
   test=${CaseTest[$i]}
@@ -36,9 +36,9 @@ for ((i = 0; i < "$QuantityTest"; i++)); do
   fi
 done
 echo "Result: $QuantitPassedTests passed tests"
+sleep 5m
 if [ "$QuantitPassedTests" == "$QuantityTest" ]; then
   exit 0
 else
   exit 1
 fi
-sleep 5m
