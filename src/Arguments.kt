@@ -36,4 +36,7 @@ data class Arguments(
      * Содержит логин и пароль?
      */
     fun hasAuthentification(): Boolean = (login != null && pass != null)
+
+    fun hasAuthorization(): Boolean = (role != null && res != null && login != null)
+
 }
