@@ -20,17 +20,24 @@ fun main(args: Array<String>) {
         }
         arguments.hasAuthentification() -> {
             val userDB = UserDB()
-            val code = authenticate(arguments.login, arguments.pass, userDB) // code 0, 2, 3 или 4
-            print(code)
-            System.exit(code) // Когда начнем переписывать нам придется переделать этот момент
+            var code = authenticate(arguments.login, arguments.pass, userDB) // code 0, 2, 3 или 4
+            print("это код с аутентификации - $code")
+            if (code!==0){
+                System.exit(code)
+            }
+            if(arguments.hasAuthorization()){
+                code = authorization(arguments.role!!, arguments.res!!, arguments.login!!,userDB) // code 0, 6, 5
+                print("это код с авторизации - $code")
+                System.exit(code)
+            }
 
         }
     }
 }
 
-fun authorization(roleString: String, res: String, idUser: Int, userDB: UserDB): Long {
+fun authorization(roleString: String, res: String, loginUser: String, userDB: UserDB): Int {
     val roleEnum: Roles = roleStringToEnum(roleString) ?: return 5
-    if (userDB.checkResourceAccess(res, roleEnum, idUser)) {
+    if (userDB.checkResourceAccess(res, roleEnum, loginUser)) {
         return 0
     } else {
         return 6
