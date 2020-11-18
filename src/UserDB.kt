@@ -80,10 +80,20 @@ class UserDB {
             "SALT"
     ))
 
+
     /**
      * Имеет ли доступ к ресурсу
      */
-    fun checkResourceAccess(resource: String, role: Roles, idUser: Int): Boolean{
+    fun checkResourceAccess(resource: String, role: Roles, loginUser: String): Boolean {
+        val idUser = findUserByLogin(loginUser)!!.id
+        for (item in rolesResources) {
+            if (item.idUser == idUser && item.role == role && isResource(resource, item.resource)) {
+                return true
+            }
+        }
+        return false
+    }
+
         return true
     }
 
