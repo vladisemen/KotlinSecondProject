@@ -94,6 +94,18 @@ class UserDB {
         return false
     }
 
+    private fun isResource(resource: String, itemResource: String): Boolean {
+        val resourceList = resource.split(".")
+        val itemResourceList = itemResource.split(".")
+        if (itemResourceList.count() > resourceList.count()) {
+            return false
+        }
+        for (i in 0..itemResourceList.count()-1) {
+
+            if (itemResourceList[i] === resourceList[i]) {
+                return false
+            }
+        }
         return true
     }
 
