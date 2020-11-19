@@ -22,11 +22,11 @@ fun main(args: Array<String>) {
             val userDB = UserDB()
             var code = authenticate(arguments.login, arguments.pass, userDB) // code 0, 2, 3 или 4
             print("это код с аутентификации - $code")
-            if (code!==0){
+            if (code !== 0) {
                 System.exit(code)
             }
-            if(arguments.hasAuthorization()){
-                code = authorization(arguments.role!!, arguments.res!!, arguments.login!!,userDB) // code 0, 6, 5
+            if (arguments.hasAuthorization()) {
+                code = authorization(arguments.role!!, arguments.res!!, arguments.login!!, userDB) // code 0, 6, 5
                 print("это код с авторизации - $code")
                 System.exit(code)
             }
@@ -35,12 +35,15 @@ fun main(args: Array<String>) {
     }
 }
 
+/**
+ * Вернет код возврата по логину и паролю(0,5 или 6)
+ */
 fun authorization(roleString: String, res: String, loginUser: String, userDB: UserDB): Int {
     val roleEnum: Roles = roleStringToEnum(roleString) ?: return 5
-    if (userDB.checkResourceAccess(res, roleEnum, loginUser)) {
-        return 0
+    return if (userDB.checkResourceAccess(res, roleEnum, loginUser)) {
+        0
     } else {
-        return 6
+        6
     }
 }
 
@@ -76,20 +79,20 @@ fun isLoginValid(login: String): Boolean {
  * Вернет код возврата по логину и паролю(0,2,3 или 4)
  */
 fun authenticate(login: String?, pass: String?, userDB: UserDB): Int {
-    if (isLoginValid(login!!)) {
-        return 2
-    } else {
-        if (!userDB.hasLogin(login)) {
-            return 3
-        } else {
-            if (!isValidatePassword(pass!!, userDB.findPasswordByLogin(login), userDB.findSaltByLogin(login))) {
-                return 4
-            } else {
-                return 0
-            }
+    return when {
+        isLoginValid(login!!) -> {
+            2
+        }
+        !userDB.hasLogin(login) -> {
+            3
+        }
+        !isValidatePassword(pass!!, userDB.findPasswordByLogin(login), userDB.findSaltByLogin(login)) -> {
+            4
+        }
+        else -> {
+            0
         }
     }
-
 }
 
 fun isValidatePassword(passArg: String, passDB: String, salt: String): Boolean {
